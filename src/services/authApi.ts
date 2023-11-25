@@ -1,23 +1,20 @@
 import axios from "axios";
 
 export function logInUser() {
-  axios
+  return axios
     .get(
       `https://api.themoviedb.org/3/authentication/guest_session/new?api_key=${
         import.meta.env.VITE_API_KEY
       }`
     )
-    .then(function (response) {
-      // setUserSession(response.data.guest_session_id);
-      console.log(response.data);
-    })
-    .catch(function (error) {
-      console.log(error);
+    .then((res) => res.data)
+    .catch((error) => {
+      throw new Error(error);
     });
 }
 
 export function logOutUser(sessionId: string) {
-  axios
+  return axios
     .delete(
       `https://api.themoviedb.org/3/movie/670292/rating?guest_session_id=${sessionId}&api_key=${
         import.meta.env.VITE_API_KEY
@@ -28,6 +25,4 @@ export function logOutUser(sessionId: string) {
     )
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err));
-
-  // setUserSession(null);
 }

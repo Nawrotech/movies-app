@@ -44,7 +44,7 @@ export function rateMovie(userId: string, rating: number) {
 }
 
 export function getRatedMovies(userId: string) {
-  axios
+  return axios
     .get(
       `https://api.themoviedb.org/3/guest_session/${userId}/rated/movies?api_key=${
         import.meta.env.VITE_API_KEY

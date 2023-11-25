@@ -1,25 +1,33 @@
 import { ReactNode, createContext, useContext, useState } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 export type TUser = {
-  user: string | null;
+  success: boolean;
+  guest_session_id: string;
+  expires_at: string;
 };
 
-const AuthContext = createContext<null | TUser>(null);
+type TAuthContext = {
+  user: TUser | null;
+  setUser: React.Dispatch<React.SetStateAction<TUser | null>>;
+};
+
+const AuthContext = createContext({} as TAuthContext);
 
 type Props = {
   children: ReactNode;
 };
 
-export const AuthContextProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<string | null>("michas");
-
-  const values = {
-    user,
-  };
-
-  return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
-};
-
 export function useAuth() {
   return useContext(AuthContext);
 }
+
+export const AuthContextProvider = ({ children }: Props) => {
+  const [user, setUser] = useLocalStorage<TUser | null>("user", null);
+
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};

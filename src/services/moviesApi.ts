@@ -29,10 +29,10 @@ export function getPoster(posterPath: string) {
     .catch((err) => console.log(err));
 }
 
-export function rateMovie(userId: string, rating: number) {
+export function rateMovie(movieId: number, userId: string, rating: number) {
   axios
     .post(
-      `https://api.themoviedb.org/3/movie/670292/rating?guest_session_id=${userId}&api_key=${
+      `https://api.themoviedb.org/3/movie/${movieId}/rating?guest_session_id=${userId}&api_key=${
         import.meta.env.VITE_API_KEY
       }`,
       {
@@ -54,10 +54,10 @@ export function getRatedMovies(userId: string) {
     .catch((err) => console.log(err));
 }
 
-export function rateTvShow(userId: string, rating: number) {
+export function rateTvShow(userId: string, tvId: number, rating: number) {
   axios
     .post(
-      `https://api.themoviedb.org/3/tv/2098/rating?guest_session_id=${userId}&api_key=${
+      `https://api.themoviedb.org/3/tv/${tvId}/rating?guest_session_id=${userId}&api_key=${
         import.meta.env.VITE_API_KEY
       }`,
       {

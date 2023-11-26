@@ -1,15 +1,41 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import { MovieDetailsList } from "../components/MovieDetailsList";
+import {
+  TMediaBasicMovie,
+  TMovieDetails,
+  TTvShowDetails,
+} from "../types/mediaTypes";
+import { TvShowDetails } from "../components/TvShowDetails";
 
 export const DetailsPage = () => {
   const data = useLoaderData();
 
   useEffect(() => {
     console.log(data);
+    console.log(typeof data);
   }, [data]);
 
-  return <div>DetailsPage</div>;
+  const { original_title, poster_path } = data as TMediaBasicMovie;
+
+  return (
+    <div className="mediaDetailsPage">
+      <h2>{original_title}</h2>
+      <div className="mediaDetailsContainer">
+        <img
+          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+          alt={original_title}
+        />
+
+        {original_title ? (
+          <MovieDetailsList data={data as TMovieDetails} />
+        ) : (
+          <TvShowDetails data={data as TTvShowDetails} />
+        )}
+      </div>
+    </div>
+  );
 };
 
 export function getMoviesDetails(movieId: string | undefined) {

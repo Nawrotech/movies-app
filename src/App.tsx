@@ -30,7 +30,7 @@ function App() {
       children: [
         {
           index: true,
-          loader: getTrendingMovies,
+          // loader: getTrendingMovies,
           errorElement: <ErrorBoundary />,
           element: <MainPage />,
         },
@@ -41,12 +41,12 @@ function App() {
           loader: ({ params }) => getMoviesDetails(params.movieId),
           errorElement: <ErrorBoundary />,
         },
-        {
-          path: "tvshows",
-          loader: getTrendingTvShows,
-          element: <MainPage />,
-          errorElement: <ErrorBoundary />,
-        },
+        // {
+        //   path: "tvshows",
+        //   loader: getTrendingTvShows,
+        //   element: <MainPage />,
+        //   errorElement: <ErrorBoundary />,
+        // },
         {
           // test tv  202411
           element: <DetailsPage />,

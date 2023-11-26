@@ -3,12 +3,13 @@ import { Navigation } from "./Navigation";
 
 export const AppLayout = () => {
   return (
-    <div>
-      <h1>hello it is me layout</h1>
+    <>
       <Navigation />
       <main>
-        <Outlet />
+        <div className="container">
+          <Outlet />
+        </div>
       </main>
-    </div>
+    </>
   );
 };

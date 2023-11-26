@@ -7,17 +7,22 @@ export const Navigation = () => {
   const { user } = useAuth();
 
   return (
-    <nav>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/rated/movies">Rated</NavLink>
+    <nav className="navbar">
+      <div className="container">
+        <div className="flex-container">
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/rated/movies">Rated</NavLink>
 
-      <button
-        onClick={() =>
-          user?.guest_session_id && logOutUser(user?.guest_session_id)
-        }
-      >
-        Log out
-      </button>
+          <button
+            className="logOutBtn"
+            onClick={() =>
+              user?.guest_session_id && logOutUser(user?.guest_session_id)
+            }
+          >
+            Log out
+          </button>
+        </div>
+      </div>
     </nav>
   );
 };

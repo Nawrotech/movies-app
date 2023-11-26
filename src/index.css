@@ -1,9 +1,73 @@
-body {
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-.cont:has(.par) {
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+  font-style: italic;
+}
+
+.navbar {
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
+
+  .flex-container {
+    display: flex;
+  }
+
+  .flex-container > * {
+    padding: 1rem;
+    background-color: transparent;
+    border: 1px solid rgba(0, 0, 0, 0.4);
+  }
+
+  *:hover {
+    cursor: pointer;
+  }
+
+  .logOutBtn {
+    margin-left: auto;
+  }
+}
+
+.container {
+  max-width: 80em;
+  margin-inline: auto;
+}
+
+.switch.active {
   background-color: red;
+}
+
+/* media card */
+
+/* .mediadCard__image {
+  height: 400px;
+} */
+
+.switcher > * {
+  margin-inline: auto;
+}
+
+.mediaContainer {
+  display: flex;
+  flex-wrap: wrap;
+
+  align-items: stretch;
+  gap: 2rem;
+}
+.mediaCard {
+  flex-basis: calc(25% - 2rem);
+  /* display: grid; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* display: grid; */
 }

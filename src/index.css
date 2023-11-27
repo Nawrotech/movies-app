@@ -71,3 +71,16 @@ img {
   justify-content: space-between;
   /* display: grid; */
 }
+
+.mediaDetailsPage {
+  text-align: center;
+}
+
+.mediaDetailsContainer {
+  display: flex;
+}
+
+.mediaDetailsContainer > * {
+  width: 300px;
+  flex-basis: 50%;
+}

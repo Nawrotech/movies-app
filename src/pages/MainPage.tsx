@@ -7,7 +7,7 @@ import { MediaCard } from "../components/MediaCard";
 import { TMediaBasicMovie, TMediaBasicTvShow } from "../types/mediaTypes";
 
 export const MainPage = () => {
-  const [media, setMedia] = useState<"movies" | "tvshows">("movies");
+  const [showMovies, setShowMovies] = useState(true);
 
   const { movies } = useMovies();
   const { tvshows } = useTvShows();
@@ -19,14 +19,14 @@ export const MainPage = () => {
 
   return (
     <section className="main-page">
-      <MediaSwitcher setMedia={setMedia} />
+      <MediaSwitcher setShowMovies={setShowMovies} />
       <div className="mediaContainer">
-        {media === "movies"
+        {showMovies
           ? movies?.results?.map((movie: TMediaBasicMovie) => (
-              <MediaCard media={media} {...movie} key={movie?.id} />
+              <MediaCard showMovies={showMovies} {...movie} key={movie?.id} />
             ))
           : tvshows?.results?.map((tvshow: TMediaBasicTvShow) => (
-              <MediaCard media={media} {...tvshow} key={tvshow?.id} />
+              <MediaCard showMovies={showMovies} {...tvshow} key={tvshow?.id} />
             ))}
       </div>
     </section>

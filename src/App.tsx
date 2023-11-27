@@ -1,12 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { LoginPage } from "./pages/LoginPage";
-import { getTrendingMovies, getTrendingTvShows } from "./services/moviesApi";
 import { AppLayout } from "./components/AppLayout";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ProtectingRoute } from "./components/ProtectingRoute";
-
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
 import { AuthContextProvider } from "./context/authContext";
 import { MainPage } from "./pages/MainPage";
 import {
@@ -37,7 +34,7 @@ function App() {
         {
           element: <DetailsPage />,
           // test movie 872585
-          path: "movies/:movieId",
+          path: "movie/:movieId",
           loader: ({ params }) => getMoviesDetails(params.movieId),
           errorElement: <ErrorBoundary />,
         },
@@ -50,7 +47,7 @@ function App() {
         {
           // test tv  202411
           element: <DetailsPage />,
-          path: "tvshows/:tvShowId",
+          path: "tvshow/:tvShowId",
           loader: ({ params }) => getTvShowsDetails(params.tvShowId),
           errorElement: <ErrorBoundary />,
         },

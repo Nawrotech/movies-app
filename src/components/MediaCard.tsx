@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { RatingComponent } from "./RatingComponent";
 
 type MediaCardProps = {
-  media: "movies" | "tvshows";
+  showMovies: boolean;
   poster_path: string;
   overview: string;
   vote_average: number;
@@ -21,20 +21,15 @@ export const MediaCard = ({
   vote_average,
   id,
   name,
-  media,
+  showMovies,
   first_air_date,
 }: MediaCardProps) => {
   const navigate = useNavigate();
   return (
     <div
-      onClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-
-        navigate(
-          `${media === "movies" ? `/movies/${id}` : `/tvshows/${id}`}  `
-        );
-      }}
+      onClick={() =>
+        navigate(`${showMovies ? `/movie/${id}` : `/tvshow/${id}`}`)
+      }
       className="mediaCard"
     >
       <img
@@ -42,11 +37,9 @@ export const MediaCard = ({
         src={`https://image.tmdb.org/t/p/original/${poster_path}`}
         alt={original_title}
       />
-      <h2>{media === "movies" ? original_title : name}</h2>
+      <h2>{showMovies ? original_title : name}</h2>
       <p>
-        <span>
-          {(media === "movies" ? release_date : first_air_date) || "unknown"}
-        </span>
+        <span>{(showMovies ? release_date : first_air_date) || "unknown"}</span>
         &nbsp;|&nbsp;<span>{vote_average}</span>
       </p>
       <p>{overview}</p>

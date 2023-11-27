@@ -39,14 +39,13 @@ export type TTvShowDetails = TMediaBasicTvShow & {
     profile_path: string;
   }[];
   episode_run_time: number[];
-  first_air_date: string;
   genres: { id: number; name: string }[];
   networks: { id: number; name: string; logo_path: string }[];
   number_of_episodes: number;
   number_of_seasons: number;
   popularity: number;
   production_companies: { id: number; logo_path: string; name: string }[];
-  season: {
+  seasons: {
     air_date: string;
     episode_count: number;
     id: number;

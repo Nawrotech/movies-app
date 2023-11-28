@@ -29,18 +29,28 @@ export function getPoster(posterPath: string) {
     .catch((err) => console.log(err));
 }
 
-export function rateMovie(movieId: number, userId: string, rating: number) {
-  axios
+type RateMovieParams = {
+  movieId: number;
+  userId: string | undefined;
+  rating: number;
+};
+
+export function rateMovie(params: RateMovieParams) {
+  return axios
     .post(
-      `https://api.themoviedb.org/3/movie/${movieId}/rating?guest_session_id=${userId}&api_key=${
+      `https://api.themoviedb.org/3/movie/${
+        params.movieId
+      }/rating?guest_session_id=${params.userId}&api_key=${
         import.meta.env.VITE_API_KEY
       }`,
       {
-        value: rating,
+        value: params.rating,
       }
     )
     .then((res) => res.data)
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      throw new Error(err);
+    });
 }
 
 export function getRatedMovies(userId: string) {
@@ -54,14 +64,16 @@ export function getRatedMovies(userId: string) {
     .catch((err) => console.log(err));
 }
 
-export function rateTvShow(userId: string, tvId: number, rating: number) {
-  axios
+export function rateTvShow(params: RateMovieParams) {
+  return axios
     .post(
-      `https://api.themoviedb.org/3/tv/${tvId}/rating?guest_session_id=${userId}&api_key=${
+      `https://api.themoviedb.org/3/tv/${
+        params.movieId
+      }/rating?guest_session_id=${params.userId}&api_key=${
         import.meta.env.VITE_API_KEY
       }`,
       {
-        value: rating,
+        value: params.rating,
       }
     )
     .then((res) => res.data)

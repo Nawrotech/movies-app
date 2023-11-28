@@ -1,5 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { RatingComponent } from "./RatingComponent";
+import { useEffect } from "react";
 
 type MediaCardProps = {
   showMovies: boolean;
@@ -25,6 +26,12 @@ export const MediaCard = ({
   first_air_date,
 }: MediaCardProps) => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    console.log(pathname);
+  }, [pathname]);
+
   return (
     <div
       onClick={() =>
@@ -37,13 +44,17 @@ export const MediaCard = ({
         src={`https://image.tmdb.org/t/p/original/${poster_path}`}
         alt={original_title}
       />
-      <h2>{showMovies ? original_title : name}</h2>
+      <h2>{original_title || name}</h2>
       <p>
-        <span>{(showMovies ? release_date : first_air_date) || "unknown"}</span>
+        <span>{release_date || first_air_date || "unknown"}</span>
         &nbsp;|&nbsp;<span>{vote_average}</span>
       </p>
       <p>{overview}</p>
-      <RatingComponent />
+      {pathname === "/" ? (
+        <RatingComponent showMovies={showMovies} mediaId={id} />
+      ) : (
+        ""
+      )}
     </div>
   );
 };

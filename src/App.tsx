@@ -53,7 +53,7 @@ function App() {
         },
 
         {
-          path: "rated/movies",
+          path: "rated",
           // loader: getRatedMovies,
           element: <RatingsPage />,
           // children: [
@@ -64,9 +64,9 @@ function App() {
           //   },
           // ],
         },
-        {
-          path: "rated/tvshows",
-        },
+        // {
+        //   path: "rated/tvshows",
+        // },
       ],
     },
     {

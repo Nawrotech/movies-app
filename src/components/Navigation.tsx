@@ -11,7 +11,7 @@ export const Navigation = () => {
       <div className="container">
         <div className="flex-container">
           <NavLink to="/">Home</NavLink>
-          <NavLink to="/rated/movies">Rated</NavLink>
+          <NavLink to="/rated">Rated</NavLink>
 
           <button
             className="logOutBtn"

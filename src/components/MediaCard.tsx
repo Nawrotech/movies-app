@@ -1,9 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { RatingComponent } from "./RatingComponent";
-import { useEffect } from "react";
 
 type MediaCardProps = {
-  showMovies: boolean;
   poster_path: string;
   overview: string;
   vote_average: number;
@@ -22,20 +20,17 @@ export const MediaCard = ({
   vote_average,
   id,
   name,
-  showMovies,
   first_air_date,
 }: MediaCardProps) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  useEffect(() => {
-    console.log(pathname);
-  }, [pathname]);
-
   return (
     <div
       onClick={() =>
-        navigate(`${showMovies ? `/movie/${id}` : `/tvshow/${id}`}`)
+        navigate(
+          `${original_title !== undefined ? `/movie/${id}` : `/tvshow/${id}`}`
+        )
       }
       className="mediaCard"
     >
@@ -51,7 +46,7 @@ export const MediaCard = ({
       </p>
       <p>{overview}</p>
       {pathname === "/" ? (
-        <RatingComponent showMovies={showMovies} mediaId={id} />
+        <RatingComponent isMovie={original_title} mediaId={id} />
       ) : (
         ""
       )}

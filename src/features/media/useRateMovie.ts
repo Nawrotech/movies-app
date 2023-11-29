@@ -6,7 +6,6 @@ export const useRateMovie = () => {
 
   const { mutate: rateMovie } = useMutation({
     mutationFn: rateMovieApi,
-    // mutationKey: ["ratedMovies"],
     onSuccess: () => {
       console.log("hooray, you rated a movie");
       queryClient.invalidateQueries({ queryKey: ["ratedMovies"] });

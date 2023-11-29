@@ -8,7 +8,9 @@ export function getTrendingTvShows() {
       }`
     )
     .then((res) => res.data)
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      throw new Error(err);
+    });
 }
 
 export function getTrendingMovies() {
@@ -19,14 +21,18 @@ export function getTrendingMovies() {
       }`
     )
     .then((res) => res.data)
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      throw new Error(err);
+    });
 }
 
 export function getPoster(posterPath: string) {
   axios
     .get(`https://image.tmdb.org/t/p/original/${posterPath}`)
     .then((res) => res.data)
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      throw new Error(err);
+    });
 }
 
 type RateMovieParams = {
@@ -53,7 +59,7 @@ export function rateMovie(params: RateMovieParams) {
     });
 }
 
-export function getRatedMovies(userId: string) {
+export function getRatedMovies(userId: string | undefined) {
   return axios
     .get(
       `https://api.themoviedb.org/3/guest_session/${userId}/rated/movies?api_key=${
@@ -61,7 +67,9 @@ export function getRatedMovies(userId: string) {
       }`
     )
     .then((res) => res.data)
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      throw new Error(err);
+    });
 }
 
 export function rateTvShow(params: RateMovieParams) {
@@ -77,16 +85,20 @@ export function rateTvShow(params: RateMovieParams) {
       }
     )
     .then((res) => res.data)
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      throw new Error(err);
+    });
 }
 
-export function getRatedTvShows(userId: string) {
-  axios
+export function getRatedTvShows(userId: string | undefined) {
+  return axios
     .get(
       `https://api.themoviedb.org/3/guest_session/${userId}/rated/tv?api_key=${
         import.meta.env.VITE_API_KEY
       }`
     )
     .then((res) => res.data)
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      throw new Error(err);
+    });
 }

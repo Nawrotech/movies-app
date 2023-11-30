@@ -43,6 +43,7 @@ export const MovieDetailsList = ({ data }: MovieDetailsListProps) => {
         <div className="companies_container">
           {production_companies.map((company) => (
             <img
+              key={company.id}
               src={`https://image.tmdb.org/t/p/original/${company?.logo_path}`}
               alt={company.name}
             />

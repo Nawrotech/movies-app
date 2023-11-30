@@ -8,7 +8,6 @@ import { TMediaBasicMovie, TMediaBasicTvShow } from "../types/mediaTypes";
 
 export const MainPage = () => {
   const [showMovies, setShowMovies] = useState(true);
-
   const { movies } = useMovies();
   const { tvshows } = useTvShows();
 
@@ -18,18 +17,16 @@ export const MainPage = () => {
   }, [movies, tvshows]);
 
   // to do infinite scroll
-
-  // also insted of spreading array elements pass them as a whole in both cases
   return (
     <section className="main-page">
       <MediaSwitcher setShowMovies={setShowMovies} />
       <div className="mediaContainer">
         {showMovies
           ? movies?.results?.map((movie: TMediaBasicMovie) => (
-              <MediaCard {...movie} key={movie?.id} />
+              <MediaCard media={movie} key={movie?.id} />
             ))
-          : tvshows?.results?.map((tvshow: TMediaBasicTvShow) => (
-              <MediaCard {...tvshow} key={tvshow?.id} />
+          : tvshows?.results?.map((tvshow: Partial<TMediaBasicTvShow>) => (
+              <MediaCard media={tvshow} key={tvshow?.id} />
             ))}
       </div>
     </section>

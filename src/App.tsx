@@ -17,8 +17,6 @@ import { ErrorBoundary } from "./pages/ProjectErrorBoundary";
 const queryClient = new QueryClient();
 
 function App() {
-  // const [userSession, setUserSession] = useState<string | null>("");
-
   let router = createBrowserRouter([
     {
       path: "/",
@@ -27,46 +25,25 @@ function App() {
       children: [
         {
           index: true,
-          // loader: getTrendingMovies,
           errorElement: <ErrorBoundary />,
           element: <MainPage />,
         },
         {
           element: <DetailsPage />,
-          // test movie 872585
           path: "movie/:movieId",
           loader: ({ params }) => getMoviesDetails(params.movieId),
           errorElement: <ErrorBoundary />,
         },
-        // {
-        //   path: "tvshows",
-        //   loader: getTrendingTvShows,
-        //   element: <MainPage />,
-        //   errorElement: <ErrorBoundary />,
-        // },
         {
-          // test tv  202411
           element: <DetailsPage />,
           path: "tvshow/:tvShowId",
           loader: ({ params }) => getTvShowsDetails(params.tvShowId),
           errorElement: <ErrorBoundary />,
         },
-
         {
           path: "rated",
-          // loader: getRatedMovies,
           element: <RatingsPage />,
-          // children: [
-          //   {
-          //     path: "/tvshows",
-          //     element: <RatingsPage />,
-          //     // loader:
-          //   },
-          // ],
         },
-        // {
-        //   path: "rated/tvshows",
-        // },
       ],
     },
     {

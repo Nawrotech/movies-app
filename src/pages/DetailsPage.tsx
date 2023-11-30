@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 import { MovieDetailsList } from "../components/MovieDetailsList";
@@ -7,17 +6,12 @@ import { TvShowDetails } from "../components/TvShowDetails";
 
 type TCommonDetails = {
   name?: string;
-  poster_path: string;
   original_title?: string;
+  poster_path: string;
 };
 
 export const DetailsPage = () => {
   const data = useLoaderData();
-
-  useEffect(() => {
-    console.log(data);
-    console.log(typeof data);
-  }, [data]);
 
   const { original_title, poster_path, name } = data as TCommonDetails;
 
@@ -29,7 +23,6 @@ export const DetailsPage = () => {
           src={`https://image.tmdb.org/t/p/original/${poster_path}`}
           alt={original_title || name}
         />
-
         {original_title ? (
           <MovieDetailsList data={data as TMovieDetails} />
         ) : (

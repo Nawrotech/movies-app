@@ -17,12 +17,16 @@ export const DetailsPage = () => {
 
   return (
     <div className="mediaDetailsPage">
-      <h2>{original_title || name}</h2>
-      <div className="mediaDetailsContainer">
-        <img
-          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
-          alt={original_title || name}
-        />
+      <h2 className="mediaDetailsPage__title">{original_title || name}</h2>
+      <div className="mediaDetailsPage__infoContainer">
+        <div className="imgContainer">
+          <img
+            className="mediaDetailsPage__image"
+            src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+            alt={original_title || name}
+          />
+        </div>
+
         {original_title ? (
           <MovieDetailsList data={data as TMovieDetails} />
         ) : (

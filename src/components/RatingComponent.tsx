@@ -3,7 +3,12 @@ import { useRateMovie } from "../features/media/useRateMovie";
 import { useState } from "react";
 import { useRateTvShow } from "../features/media/useRateTvShow";
 
-export const RatingComponent = ({ mediaId, isMovie }) => {
+type Props = {
+  mediaId: number | undefined;
+  isMovie: string | undefined;
+};
+
+export const RatingComponent = ({ mediaId, isMovie }: Props) => {
   const [score, setScore] = useState(1);
 
   const { user } = useAuth();
@@ -27,7 +32,6 @@ export const RatingComponent = ({ mediaId, isMovie }) => {
     }
   }
 
-  // with regex restrict input value
   // to do modal with portal, modal component
   return (
     <div onClick={(e) => e.stopPropagation()} className="rating">
@@ -37,18 +41,7 @@ export const RatingComponent = ({ mediaId, isMovie }) => {
         max={10}
         type="number"
       />
-      <button
-        onClick={
-          handleRateMedia
-          // rateMovie({
-          //   movieId: mediaId,
-          //   userId: user?.guest_session_id,
-          //   rating: score,
-          // })
-        }
-      >
-        Submit rating
-      </button>
+      <button onClick={handleRateMedia}>Submit rating</button>
     </div>
   );
 };

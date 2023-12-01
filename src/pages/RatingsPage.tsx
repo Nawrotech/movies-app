@@ -17,15 +17,17 @@ export const RatingsPage = () => {
   // ratings should be displayed on hover
 
   return (
-    <section className="mediaContainer">
-      <MediaSwitcher setShowMovies={setShowMovies} />
-      {showMovies
-        ? ratedMovies?.results?.map((ratedMovie: TMediaBasicMovie) => (
-            <MediaCard key={ratedMovie.id} media={ratedMovie} />
-          ))
-        : ratedTvShows?.results?.map((ratedTvShow: TMediaBasicTvShow) => (
-            <MediaCard key={ratedTvShow.id} media={ratedTvShow} />
-          ))}
+    <section className="main-page">
+      <MediaSwitcher showMovies={showMovies} setShowMovies={setShowMovies} />
+      <div className="mediaContainer">
+        {showMovies
+          ? ratedMovies?.results?.map((ratedMovie: TMediaBasicMovie) => (
+              <MediaCard key={ratedMovie.id} media={ratedMovie} />
+            ))
+          : ratedTvShows?.results?.map((ratedTvShow: TMediaBasicTvShow) => (
+              <MediaCard key={ratedTvShow.id} media={ratedTvShow} />
+            ))}
+      </div>
     </section>
   );
 };

@@ -5,8 +5,12 @@ export const LoginPage = () => {
 
   return (
     <div className="loginPage">
-      <h1>Welcome! Log in by clicking button below</h1>
-      <button onClick={() => logInUser()}>Log user In</button>
+      <h1 className="loginPage__heading">
+        Welcome! Log in by clicking button below
+      </h1>
+      <button className="loginPage__button" onClick={() => logInUser()}>
+        Log user In
+      </button>
     </div>
   );
 };

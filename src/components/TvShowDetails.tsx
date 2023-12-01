@@ -21,48 +21,49 @@ export const TvShowDetails = ({ data }: PropsTvShowDetails) => {
   const creators = created_by.map((creator) => creator?.name).join(", ");
 
   return (
-    <ul>
+    <ul className="detailsList">
       <li>
-        <span>Created By:&nbsp;</span>
+        <span className="label">Created By:&nbsp;</span>
         <span>{creators}</span>
       </li>
       <li>
-        <span>Epiose Run Time:&nbsp;</span>
+        <span className="label">Epiose Run Time:&nbsp;</span>
         <span>{episode_run_time}</span>
       </li>
       <li>
-        <span>First Air Date:&nbsp;</span>f<span>{first_air_date}</span>
+        <span className="label">First Air Date:&nbsp;</span>f
+        <span>{first_air_date}</span>
       </li>
       <li>
-        <span>Networks:&nbsp;</span>
+        <span className="label">Networks:&nbsp;</span>
         {networks.map((network) => (
           <p key={network.name}>{network.name}</p>
         ))}
       </li>
       <li>
-        <span>Number of episodes:&nbsp;</span>
+        <span className="label">Number of episodes:&nbsp;</span>
         <span>{number_of_episodes}</span>
       </li>
       <li>
-        <span>Number of seasons:&nbsp;</span>
+        <span className="label">Number of seasons:&nbsp;</span>
         <span>{number_of_seasons}</span>
       </li>
       <li>
-        <span>Popularity:&nbsp;</span>
+        <span className="label">Popularity:&nbsp;</span>
         <span>{popularity}</span>
       </li>
       <li>
-        <span>Popularity:&nbsp;</span>
+        <span className="label">Popularity:&nbsp;</span>
         <span>{popularity}</span>
       </li>
       <li>
-        <span>Production Companies:&nbsp;</span>
+        <span className="label">Production Companies:&nbsp;</span>
         <span>
           {production_companies.map((company) => company.name).join(", ")}
         </span>
       </li>
       <li>
-        <span>Seasons:&nbsp;</span>
+        <span className="label">Seasons:&nbsp;</span>
         <div className="">
           {seasons.map((season) => {
             return (
@@ -76,7 +77,7 @@ export const TvShowDetails = ({ data }: PropsTvShowDetails) => {
         </div>
       </li>
       <li>
-        <span>Vote Average: </span>
+        <span className="label">Vote Average: </span>
         <span>{vote_average}</span>
       </li>
     </ul>

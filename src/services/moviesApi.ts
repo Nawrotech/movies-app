@@ -36,7 +36,7 @@ export function getPoster(posterPath: string) {
 }
 
 type RateMovieParams = {
-  movieId: number;
+  movieId: number | undefined;
   userId: string | undefined;
   rating: number;
 };

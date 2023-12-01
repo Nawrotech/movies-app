@@ -1,5 +1,5 @@
 import { TMovieDetails } from "../types/mediaTypes";
-
+import { formatTime } from "../utils/timeFormatter";
 type MovieDetailsListProps = {
   data: TMovieDetails;
 };
@@ -19,9 +19,10 @@ export const MovieDetailsList = ({ data }: MovieDetailsListProps) => {
   } = data;
 
   return (
-    <ul className="movieDetails">
+    <ul className="detailsList">
       <li>
-        <span className="label">Budget:</span> <span>{budget}</span>
+        <span className="label">Budget:</span>{" "}
+        <span>{budget || "unknown"}</span>
       </li>
       <li>
         <span className="label">Genres:</span>{" "}
@@ -40,9 +41,10 @@ export const MovieDetailsList = ({ data }: MovieDetailsListProps) => {
 
       <li>
         <span className="label">Production Companies:</span>{" "}
-        <div className="companies_container">
+        <div className="companiesContainer">
           {production_companies.map((company) => (
             <img
+              className="prodCompanyLogo"
               key={company.id}
               src={`https://image.tmdb.org/t/p/original/${company?.logo_path}`}
               alt={company.name}
@@ -54,16 +56,18 @@ export const MovieDetailsList = ({ data }: MovieDetailsListProps) => {
         <span className="label">Release Date:</span> <span>{release_date}</span>
       </li>
       <li>
-        <span className="label">Revenue:</span> <span>{revenue}</span>
+        <span className="label">Revenue:</span>{" "}
+        <span>{revenue || "unknown"}</span>
       </li>
       <li>
-        <span className="label">Runtime:</span> <span>{runtime}</span>
+        <span className="label">Runtime:</span>{" "}
+        <span>{formatTime(runtime)}</span>
       </li>
       <li>
         <span className="label">Vote average:</span> <span>{vote_average}</span>
       </li>
       <li>
-        <span className="label">Vote average:</span>{" "}
+        <span className="label">Language:</span>{" "}
         <span>{original_language}</span>
       </li>
     </ul>

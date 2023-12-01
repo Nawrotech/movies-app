@@ -11,15 +11,9 @@ export const MainPage = () => {
   const { movies } = useMovies();
   const { tvshows } = useTvShows();
 
-  useEffect(() => {
-    console.log(movies);
-    console.log(tvshows);
-  }, [movies, tvshows]);
-
-  // to do infinite scroll
   return (
     <section className="main-page">
-      <MediaSwitcher setShowMovies={setShowMovies} />
+      <MediaSwitcher showMovies={showMovies} setShowMovies={setShowMovies} />
       <div className="mediaContainer">
         {showMovies
           ? movies?.results?.map((movie: TMediaBasicMovie) => (
